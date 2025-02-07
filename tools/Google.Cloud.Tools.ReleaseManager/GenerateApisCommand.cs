@@ -25,10 +25,12 @@ namespace Google.Cloud.Tools.ReleaseManager;
 
 internal class GenerateApisCommand : ICommand
 {
+    // added /bin/bash because that's the location of bash on my mac
     private static readonly string[] BashLocations =
     {
         @"C:\Program Files\Git\usr\bin\bash.exe",
-        "/usr/bin/bash"
+        "/usr/bin/bash",
+        "/bin/bash"
     };
     internal const string ProtocEnvironmentVariable = "PROTOC";
     internal const string ProtobufToolsRootEnvironmentVariable = "PROTOBUF_TOOLS_ROOT";
