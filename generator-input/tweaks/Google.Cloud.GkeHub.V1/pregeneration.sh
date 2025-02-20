@@ -8,5 +8,5 @@ set -e
 # by switching around the last two parts of the csharp_namespace option.
 for proto in $(find $GOOGLEAPIS/google/cloud/gkehub/v1 -name '*.proto')
 do
-  sed -i 's/option csharp_namespace = "Google.Cloud.GkeHub.\([^.]*\).V1"/option csharp_namespace = "Google.Cloud.GkeHub.V1.\1"/g' $proto
+  sed -i -E 's/option csharp_namespace = "Google.Cloud.GkeHub.\([^.]*\).V1"/option csharp_namespace = "Google.Cloud.GkeHub.V1.\1"/g' $proto
 done
