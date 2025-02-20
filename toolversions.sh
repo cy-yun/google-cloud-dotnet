@@ -64,7 +64,7 @@ install_protoc() {
   
   # Temporary fix for a broken proto in the protobuf tools package
   # muted because this was throwing "transform strings are not the same length" error
-  # sed -i 's/--)/-- )/g' "$PROTOBUF_TOOLS_ROOT/tools/google/protobuf/timestamp.proto"
+  sed -i -E 's/--)/-- )/g' "$PROTOBUF_TOOLS_ROOT/tools/google/protobuf/timestamp.proto"
   chmod +x $PROTOC
 }
 
@@ -76,7 +76,7 @@ install_microgenerator() {
       ;;
     # Changed to avoid the program exiting due to the computer being Mac
     darwin*)
-      declare -r RUNTIME=linux-x64
+      declare -r RUNTIME=osx-x64
       declare -r EXTENSION=
       ;;
     win* | msys* | cygwin*)

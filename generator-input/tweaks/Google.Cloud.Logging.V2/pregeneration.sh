@@ -7,5 +7,5 @@ set -e
 # in both GAPIC and gRPC-generated code.
 # We rename the "XyzAsync" versions to "XyzLongRunning", in line with
 # https://google.aip.dev/136#rpc-name
-sed -i 's/rpc UpdateBucketAsync/rpc UpdateBucketLongRunning/g' $GOOGLEAPIS/google/logging/v2/logging_config.proto
-sed -i 's/rpc CreateBucketAsync/rpc CreateBucketLongRunning/g' $GOOGLEAPIS/google/logging/v2/logging_config.proto
+sed -i -E 's/rpc UpdateBucketAsync/rpc UpdateBucketLongRunning/g' $GOOGLEAPIS/google/logging/v2/logging_config.proto
+sed -i -E 's/rpc CreateBucketAsync/rpc CreateBucketLongRunning/g' $GOOGLEAPIS/google/logging/v2/logging_config.proto

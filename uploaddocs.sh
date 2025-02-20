@@ -35,7 +35,7 @@ do
     if grep -q "All APIs" toc.html
     then
       echo "Removing 'All APIs' link"
-      sed -i '16,18d' toc.html
+      sed -i -E '16,18d' toc.html
     else
       echo "No 'All APIs' link to remove"
     fi
