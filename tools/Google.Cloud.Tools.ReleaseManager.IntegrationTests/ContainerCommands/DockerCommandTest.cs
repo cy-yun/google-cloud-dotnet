@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Google.Cloud.ClientTesting;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -61,6 +60,12 @@ public class DockerCommandTest
         {
             var path = Path.Combine(outputDirectory, expectedAbsent);
             Assert.False(Path.Exists(path), $"Path {path} should not exist");
+        }
+        foreach (var expectedActual in fileExpectations.AssertContentEquals)
+        {
+            string expected = Path.Combine(outputDirectory, expectedActual.Expected);
+            string actual = Path.Combine(outputDirectory, expectedActual.Actual);
+            Assert.Equal(File.ReadAllText(expected), File.ReadAllText(actual));
         }
     }
 
@@ -130,16 +135,23 @@ public class DockerCommandTest
         public FileExpectations FileExpectations { get; set; } = new();
     }
 
-    public class FileExpectations
+    private class FileExpectations
     {
         public List<string> Present { get; set; } = [];
         public List<string> Absent { get; set; } = [];
+        public List<ExpectedActual> AssertContentEquals { get; set; } = [];
     }
 
     private class FileCopy
     {
         public string Source { get; set; }
         public string Target { get; set; }
+    }
+
+    private class ExpectedActual
+    {
+        public string Expected { get; set; }
+        public string Actual { get; set; }
     }
 
     private enum Expectation
